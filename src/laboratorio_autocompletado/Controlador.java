@@ -7,6 +7,8 @@ package laboratorio_autocompletado;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
@@ -35,20 +37,22 @@ public class Controlador {
                 titulo,
                 JOptionPane.ERROR_MESSAGE);
     }
-    
-      void mostrarMensaje(String titulo, String mensaje) {
+
+    void mostrarMensaje(String titulo, String mensaje) {
         JOptionPane.showMessageDialog(null,
                 mensaje,
                 titulo,
                 JOptionPane.INFORMATION_MESSAGE);
     }
-    
-    
-    public void seleccionar(JFrame frame, JTextPane textPane){
-    archivo.SetText(frame, textPane);
-    }
-    
 
+    
+    //SE DIRIGE AL MODELO-ARCHIVO Y PERMITE SELECCIONAR UNO
+    public void seleccionar(JFrame frame, JTextPane textPane) {
+        archivo.SetText(frame, textPane);
+    }
+
+    
+    //PERMITE AGREGAR NUEVAS PALABRAS USANDO EL ARCHIVO
     public void Agregar_Nuevas_Palabras(String palabra) throws IOException {
         boolean flag = false;
         ArrayList<String> palabras = archivo.getPalabras();
@@ -59,9 +63,9 @@ public class Controlador {
         }
         if (!palabra.matches("[0-9]+") && palabra.matches("[a-zA-Z_]+")) {
             if (flag == false) {
-                archivo.setPalabras(palabra);
+                archivo.add_en_archivo(palabra);
                 principal.agregar_palabraN(palabra);
-                mostrarMensaje("Exito","Palabra agregada");
+                mostrarMensaje("Exito", "Palabra agregada");
             } else {
                 mostrarError("Error", "Imposible agregar esta palabra");
             }
@@ -71,6 +75,18 @@ public class Controlador {
 
     }
 
+    
+    //GUARDA EL ARCHIVO
+    public void guardarArchivo(JTextPane texto, JFrame frame) {
+        try {
+            archivo.GuardarArchivo(texto, frame);
+        } catch (IOException ex) {
+            mostrarError("Error con archivo", "No se puede escribir en el archivo.");
+        }
+    }
+
+    
+    //AGREGA LAS PALABRAS INICIALES A PARTIR DEL DICCIONARIO
     public void Agregar_palabras() throws IOException {
         //crea el arbol
         principal.Crear_Arbol(archivo.Leer_Archivo());

@@ -16,6 +16,8 @@ public class Arbol {
         Add_recursiva(palabra, raiz, 0);
     }
 
+    
+    //PERMITE BUSCAR TODAS LAS PALABRAS CON LA LETRA INGRESADA
     public ArrayList<String> buscar_palabras(String letras) {
         palabras.clear();
         palabra = "";
@@ -23,9 +25,11 @@ public class Arbol {
         Nodo n = raiz;
         int cont = 0;
 
+        
         for (int i = 0; i < letras.length(); i++) {
             if (i == 0) {
                 letra = Buscar_nodo(raiz, letras.charAt(i));
+                
                 if (letra != raiz) {
                     cont = cont + 1;
                     n = letra;
@@ -41,6 +45,7 @@ public class Arbol {
 
             }
         }
+        
 
         if (cont == letras.length() && letra != raiz) {
             buscar_palabras(letra, 0);
@@ -48,6 +53,7 @@ public class Arbol {
         return palabras;
     }
 
+    //VA AÑADIENDO AL ARRAY LAS PALABRAS A PARTIR DE LA LETRA INGRESADA
     public void buscar_palabras(Nodo letra, int k) {
 
         if (letra.getMarcador() == true && k == 1) {
@@ -69,6 +75,8 @@ public class Arbol {
 
     }
 
+    
+    //AÑADE POR PRIMERA VEZ CUANDO SE CREA EL ARBOL TODAS LAS PALABRAS DEL DICCIONARIO
     public void Add_recursiva(String palabra, Nodo n, int i) {
 
         if (i < palabra.length()) {
@@ -89,6 +97,7 @@ public class Arbol {
 
     }
 
+    //PERMITE BUSCAR LA EXISTENCIA DE "X" NODO
     public Nodo Buscar_nodo(Nodo n, char letra) {
         Nodo k = n;
         if (n != null) {
@@ -100,15 +109,8 @@ public class Arbol {
         return k;
     }
 
-    public void vertodo(Nodo n) {
-        if (n != null) {
-            for (Nodo k : n.getHijos()) {
-                vertodo(k);
-            }
 
-        }
-    }
-
+    //CREA EL ARBOL CUANDO SE ABRE EL PROGRAMA
     public void Crear_Arbol(ArrayList<String> palabras) {
         Nodo n = new Nodo('X');
         raiz = n;

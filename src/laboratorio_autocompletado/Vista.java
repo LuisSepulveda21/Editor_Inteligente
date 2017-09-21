@@ -5,9 +5,8 @@
  */
 package laboratorio_autocompletado;
 
-import java.awt.event.KeyEvent;
+import java.awt.Color;
 import java.io.IOException;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,12 +29,14 @@ public class Vista extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Text Editor");
         setIconImage(new ImageIcon(getClass().getResource("/imgs/icono.png")).getImage());
-        
+        Palabras_R.setBackground(new Color(1, 1, 1, (float) 0.01));
+        Palabras_R.setLineWrap(true);
+
         c = new Controlador();
         try {
             c.Agregar_palabras();
         } catch (IOException ex) {
-            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error");
         }
         Palabras_R.setEditable(false);
     }
@@ -56,13 +57,15 @@ public class Vista extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Palabras_R = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Add_Button = new javax.swing.JButton();
+        Select_Button = new javax.swing.JButton();
+        Save_Button = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        Ingreso_TxtField = new javax.swing.JTextPane();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        Ingreso_TxtPane = new javax.swing.JTextPane();
+        jSeparator1 = new javax.swing.JSeparator();
+        Logo_label = new javax.swing.JLabel();
+        Suggest_label = new javax.swing.JLabel();
+        Fondo_label = new javax.swing.JLabel();
 
         AddWords_Frame.setMinimumSize(new java.awt.Dimension(290, 222));
         AddWords_Frame.getContentPane().setLayout(null);
@@ -96,108 +99,129 @@ public class Vista extends javax.swing.JFrame {
         jLabel5.setBounds(0, 0, 280, 190);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(785, 560));
+        setMinimumSize(new java.awt.Dimension(710, 530));
         getContentPane().setLayout(null);
 
         Palabras_R.setColumns(20);
-        Palabras_R.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        Palabras_R.setFont(new java.awt.Font("Century Gothic", 0, 15)); // NOI18N
         Palabras_R.setRows(5);
+        Palabras_R.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Palabras_R.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(Palabras_R);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(470, 350, 250, 140);
+        jScrollPane1.setBounds(450, 120, 240, 370);
 
-        jButton1.setFont(new java.awt.Font("Century Gothic", 2, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/rsz_1add.png"))); // NOI18N
-        jButton1.setText("Agregar ");
-        jButton1.setToolTipText("");
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Add_Button.setFont(new java.awt.Font("Century Gothic", 2, 16)); // NOI18N
+        Add_Button.setForeground(new java.awt.Color(255, 255, 255));
+        Add_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/rsz_rsz_1add.png"))); // NOI18N
+        Add_Button.setText("Agregar ");
+        Add_Button.setToolTipText("");
+        Add_Button.setContentAreaFilled(false);
+        Add_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Add_ButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(590, -10, 180, 90);
+        getContentPane().add(Add_Button);
+        Add_Button.setBounds(360, -20, 180, 90);
 
-        jButton3.setFont(new java.awt.Font("Century Gothic", 2, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/select.png"))); // NOI18N
-        jButton3.setText("Seleccionar");
-        jButton3.setContentAreaFilled(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Select_Button.setFont(new java.awt.Font("Century Gothic", 2, 16)); // NOI18N
+        Select_Button.setForeground(new java.awt.Color(255, 255, 255));
+        Select_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/rsz_select.png"))); // NOI18N
+        Select_Button.setText("Seleccionar");
+        Select_Button.setContentAreaFilled(false);
+        Select_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                Select_ButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3);
-        jButton3.setBounds(380, 10, 260, 57);
+        getContentPane().add(Select_Button);
+        Select_Button.setBounds(180, 0, 260, 57);
 
-        Ingreso_TxtField.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        Ingreso_TxtField.addKeyListener(new java.awt.event.KeyAdapter() {
+        Save_Button.setFont(new java.awt.Font("Century Gothic", 2, 16)); // NOI18N
+        Save_Button.setForeground(new java.awt.Color(255, 255, 255));
+        Save_Button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/if_Save_Icon_1398916.png"))); // NOI18N
+        Save_Button.setText("Guardar");
+        Save_Button.setContentAreaFilled(false);
+        Save_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Save_ButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Save_Button);
+        Save_Button.setBounds(520, 0, 150, 50);
+
+        Ingreso_TxtPane.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        Ingreso_TxtPane.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                Ingreso_TxtFieldKeyReleased(evt);
+                Ingreso_TxtPaneKeyReleased(evt);
             }
         });
-        jScrollPane2.setViewportView(Ingreso_TxtField);
+        jScrollPane2.setViewportView(Ingreso_TxtPane);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(30, 110, 420, 380);
+        jScrollPane2.setBounds(10, 120, 420, 370);
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 22)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/rsz_1554.png"))); // NOI18N
-        jLabel2.setText("Text Editor");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 0, 310, 90);
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        getContentPane().add(jSeparator1);
+        jSeparator1.setBounds(440, 120, 310, 380);
 
-        jLabel3.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/rsz_rsz_icon-suggestion.png"))); // NOI18N
-        jLabel3.setText("SUGERENCIAS");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(470, 240, 220, 110);
+        Logo_label.setFont(new java.awt.Font("Century Gothic", 1, 22)); // NOI18N
+        Logo_label.setForeground(new java.awt.Color(255, 255, 255));
+        Logo_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/rsz_1554.png"))); // NOI18N
+        Logo_label.setText("Text Editor");
+        getContentPane().add(Logo_label);
+        Logo_label.setBounds(20, 0, 310, 90);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/woven-cloth-352481_960_720.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-50, -170, 830, 820);
+        Suggest_label.setFont(new java.awt.Font("Candara", 1, 16)); // NOI18N
+        Suggest_label.setForeground(new java.awt.Color(255, 255, 255));
+        Suggest_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/rsz_1rsz_rsz_icon-suggestion.png"))); // NOI18N
+        Suggest_label.setText("SUGERENCIAS");
+        getContentPane().add(Suggest_label);
+        Suggest_label.setBounds(500, 20, 230, 130);
+
+        Fondo_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/woven-cloth-352481_960_720.jpg"))); // NOI18N
+        getContentPane().add(Fondo_label);
+        Fondo_label.setBounds(-50, -170, 830, 820);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void Add_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Add_ButtonActionPerformed
         AddWords_Frame.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_Add_ButtonActionPerformed
 
-    private void Ingreso_TxtFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ingreso_TxtFieldKeyReleased
+    private void Ingreso_TxtPaneKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Ingreso_TxtPaneKeyReleased
         Palabras_R.setText("");
 
-        if ((Ingreso_TxtField.getText() != null) && (!Ingreso_TxtField.getText().equals(""))) {
+        if ((Ingreso_TxtPane.getText() != null) && (!Ingreso_TxtPane.getText().equals(""))) {
+           
 
             int k = 0;
             ArrayList<String> palabras;
-            int j = Ingreso_TxtField.getText().length();
+            int j = Ingreso_TxtPane.getText().length();
+
 
             while (j >= 0 & k == 0) {
-                if (j > 0 && Ingreso_TxtField.getText().substring(j - 1, j).equals(" ")) {
+                if (j > 0 && Ingreso_TxtPane.getText().substring(j - 1, j).equals(" ")) {
                     k = j;
                 }
                 j--;
             }
 
-            if (Ingreso_TxtField.getText().length() - k > 0) {
-                palabras = c.buscar_palabras(Ingreso_TxtField.getText().substring(k, Ingreso_TxtField.getText().length()));
+            if (Ingreso_TxtPane.getText().length() - k > 0) {
+                palabras = c.buscar_palabras(Ingreso_TxtPane.getText().substring(k, Ingreso_TxtPane.getText().length()));
+
 
                 for (int i = 0; i < palabras.size(); i++) {
-
                     Palabras_R.append(palabras.get(i) + '\n');
 
                 }
             }
 
         }
-    }//GEN-LAST:event_Ingreso_TxtFieldKeyReleased
+    }//GEN-LAST:event_Ingreso_TxtPaneKeyReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
@@ -208,15 +232,16 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void AddWord_TxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddWord_TxtFieldActionPerformed
-        if ((Ingreso_TxtField.getText() != null) && (!Ingreso_TxtField.getText().equals(""))) {
 
-        }
     }//GEN-LAST:event_AddWord_TxtFieldActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-c.seleccionar(this, Ingreso_TxtField);
-Ingreso_TxtField.repaint();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void Select_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Select_ButtonActionPerformed
+        c.seleccionar(this, Ingreso_TxtPane);
+    }//GEN-LAST:event_Select_ButtonActionPerformed
+
+    private void Save_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Save_ButtonActionPerformed
+        c.guardarArchivo(Ingreso_TxtPane, this);
+    }//GEN-LAST:event_Save_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,17 +281,19 @@ Ingreso_TxtField.repaint();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AddWord_TxtField;
     private javax.swing.JFrame AddWords_Frame;
-    private javax.swing.JTextPane Ingreso_TxtField;
+    private javax.swing.JButton Add_Button;
+    private javax.swing.JLabel Fondo_label;
+    private javax.swing.JTextPane Ingreso_TxtPane;
+    private javax.swing.JLabel Logo_label;
     private javax.swing.JTextArea Palabras_R;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Save_Button;
+    private javax.swing.JButton Select_Button;
+    private javax.swing.JLabel Suggest_label;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

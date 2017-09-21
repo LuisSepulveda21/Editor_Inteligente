@@ -11,3 +11,6 @@ mantener
 mesa
 pizza
 poder
+serpiente
+sol
+rosa

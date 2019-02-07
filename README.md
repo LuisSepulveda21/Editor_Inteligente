@@ -7,3 +7,4 @@ Entre las funcionalidades se encuentran
 <li>Agregar Palabra </li>
 <li>Seleccionar & Guardar archivo </li>
 </ul>
+Realizado en JAVA y usando MVC.
